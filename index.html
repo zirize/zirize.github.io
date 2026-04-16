@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>zirize — Open Source Projects</title>
+  <meta name="description" content="Open source projects by zirize: Linux tools, audio monitoring, and accessibility utilities for Ren'Py visual novels." />
+  <meta name="author" content="zirize" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://zirize.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zirize.github.io/" />
+  <meta property="og:title" content="zirize — Open Source Projects" />
+  <meta property="og:description" content="Open source projects by zirize: Linux tools, audio monitoring, and accessibility utilities." />
+  <meta name="twitter:card" content="summary" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": "zirize",
+    "url": "https://zirize.github.io/",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "zirize",
+      "url": "https://github.com/zirize"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2d3148;
+      --accent: #7c6af7;
+      --accent2: #56c8a0;
+      --text: #e2e4ef;
+      --muted: #8b90b0;
+      --radius: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      background: linear-gradient(135deg, #1a1d27 0%, #12141e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 20px 50px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 24px;
+    }
+    header a.gh-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    header a.gh-link:hover { text-decoration: none; border-color: var(--accent); }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      flex: 1;
+    }
+    h2 {
+      font-size: 1.1rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color .2s, transform .2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card .tag {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent2);
+      margin-bottom: 10px;
+    }
+    .card h3 { font-size: 1.05rem; color: var(--text); margin-bottom: 8px; }
+    .card p { font-size: 0.875rem; color: var(--muted); flex: 1; margin-bottom: 16px; }
+    .card .links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .card .links a {
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .card .links a.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .card .links a:hover { text-decoration: none; border-color: var(--accent); color: var(--text); }
+    .card .links a.primary:hover { opacity: 0.85; }
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>zirize</h1>
+  <p>Open source tools for Linux, audio, and accessibility.</p>
+  <a class="gh-link" href="https://github.com/zirize">⭐ GitHub Profile</a>
+</header>
+<main>
+  <h2>Projects</h2>
+  <div class="projects">
+
+    <div class="card">
+      <div class="tag">Linux · TUI</div>
+      <h3>LinM 한글 설치 가이드</h3>
+      <p>LinM(Linux용 텍스트 UI 파일 관리자, Mdir 클론)을 sudo 없이 사용자 홈 경로에 안전하게 설치하는 방법을 안내합니다.</p>
+      <div class="links">
+        <a class="primary" href="https://zirize.github.io/linm-install-guide/">가이드 보기</a>
+        <a href="https://github.com/zirize/linm">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tag">Audio · Networking</div>
+      <h3>Scream Audio Monitoring</h3>
+      <p>A complete guide to building an integrated audio monitoring system using the Scream protocol over UDP multicast on a LAN.</p>
+      <div class="links">
+        <a class="primary" href="https://zirize.github.io/scream-audio-monitoring/">View Guide</a>
+        <a href="https://github.com/zirize/scream-audio-monitoring">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tag">Accessibility · TTS</div>
+      <h3>Piper TTS for Ren'Py</h3>
+      <p>Replace Ren'Py's robotic espeak voice with natural-sounding Piper TTS on Linux — free, local, no internet required.</p>
+      <div class="links">
+        <a class="primary" href="https://zirize.github.io/piper-renpy-selfvoicing/">View Guide</a>
+        <a href="https://github.com/zirize/piper-renpy-selfvoicing">GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+<footer>
+  <p>Made by <a href="https://github.com/zirize">zirize</a></p>
+</footer>
+</body>
+</html>
