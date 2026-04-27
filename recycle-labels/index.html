@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>분리수거 안내 라벨 — A4 출력용 | zirize</title>
+  <meta name="description" content="대한민국 분리수거 안내 라벨 (캔, 유리병, 종이, 플라스틱, 비닐, 일반쓰레기). A4 용지에 바로 출력해서 쓸 수 있는 무료 PDF/SVG 파일을 제공합니다." />
+  <meta name="keywords" content="분리수거, 재활용, 라벨, 안내판, A4출력, 캔, 유리병, 종이류, 플라스틱, 비닐, 일반쓰레기, 무료, 인쇄" />
+  <meta name="author" content="zirize" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://zirize.github.io/recycle-labels/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zirize.github.io/recycle-labels/" />
+  <meta property="og:title" content="분리수거 안내 라벨 — A4 출력용" />
+  <meta property="og:description" content="대한민국 분리수거 안내 라벨. A4 용지에 바로 출력해서 사용 가능한 무료 PDF/SVG." />
+  <meta name="twitter:card" content="summary" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "분리수거 안내 라벨 — A4 출력용",
+    "url": "https://zirize.github.io/recycle-labels/",
+    "description": "대한민국 분리수거 안내 라벨. 캔류, 유리병류, 종이류, 플라스틱류, 비닐류, 일반쓰레기, 캔·병류 라벨을 A4 용지에 바로 출력할 수 있는 무료 PDF·SVG 파일.",
+    "author": {
+      "@type": "Person",
+      "name": "zirize",
+      "url": "https://github.com/zirize"
+    },
+    "inLanguage": "ko"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2d3148;
+      --accent: #7c6af7;
+      --accent2: #56c8a0;
+      --text: #e2e4ef;
+      --muted: #8b90b0;
+      --radius: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      background: linear-gradient(135deg, #1a1d27 0%, #12141e 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 20px 50px;
+      text-align: center;
+    }
+    header .back {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: var(--accent); text-decoration: none; }
+    header h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+    header p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 24px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn:hover { text-decoration: none; border-color: var(--accent); }
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .btn.primary:hover { opacity: 0.85; }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      flex: 1;
+    }
+    .section-title {
+      font-size: 1rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .labels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .label-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .label-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .label-card .preview {
+      background: #fff;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 160px;
+    }
+    .label-card .preview img {
+      max-height: 128px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    .label-card .info {
+      padding: 16px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .label-card .tag {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent2);
+      margin-bottom: 6px;
+    }
+    .label-card h3 {
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .label-card .dl-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .label-card .dl-links a {
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .label-card .dl-links a.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .label-card .dl-links a:hover { text-decoration: none; border-color: var(--accent); color: var(--text); }
+    .label-card .dl-links a.primary:hover { opacity: 0.85; }
+    .combined-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+    .combined-card .icon { font-size: 2.5rem; }
+    .combined-card .text { flex: 1; min-width: 200px; }
+    .combined-card h3 { font-size: 1.1rem; margin-bottom: 6px; color: var(--text); }
+    .combined-card p { font-size: 0.875rem; color: var(--muted); margin-bottom: 14px; }
+    .how-to {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 60px;
+    }
+    .how-to h2 {
+      font-size: 1rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
+    .how-to ol {
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 2;
+    }
+    .how-to ol li { color: var(--text); }
+    .how-to ol li span { color: var(--muted); }
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a class="back" href="https://zirize.github.io/">← zirize 홈으로</a>
+  <h1>분리수거 안내 라벨</h1>
+  <p>대한민국 분리수거 기준에 맞게 제작된 A4 출력용 라벨입니다.<br>
+  PDF 또는 SVG 파일을 다운로드해 바로 프린트하여 사용하세요.</p>
+  <div class="btn-group">
+    <a class="btn primary" href="recycle_all.pdf" download>📥 전체 한번에 받기 (PDF)</a>
+    <a class="btn" href="https://github.com/zirize/zirize.github.io/tree/main/recycle-labels">GitHub에서 보기</a>
+  </div>
+</header>
+
+<main>
+  <h2 class="section-title">개별 라벨</h2>
+  <p class="section-desc">각 품목별 라벨을 개별로 다운로드할 수 있습니다. PDF는 바로 인쇄용, SVG는 편집·크기 조정용입니다.</p>
+
+  <div class="labels-grid">
+
+    <div class="label-card">
+      <div class="preview">
+        <img src="can.svg" alt="캔류 분리수거 라벨" />
+      </div>
+      <div class="info">
+        <div class="tag">재활용</div>
+        <h3>캔류</h3>
+        <div class="dl-links">
+          <a class="primary" href="can.pdf" download>PDF 다운로드</a>
+          <a href="can.svg" download>SVG</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="label-card">
+      <div class="preview">
+        <img src="bottle.svg" alt="유리병류 분리수거 라벨" />
+      </div>
+      <div class="info">
+        <div class="tag">재활용</div>
+        <h3>유리병류</h3>
+        <div class="dl-links">
+          <a class="primary" href="bottle.pdf" download>PDF 다운로드</a>
+          <a href="bottle.svg" download>SVG</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="label-card">
+      <div class="preview">
+        <img src="can_bottle.svg" alt="캔·병류 분리수거 라벨" />
+      </div>
+      <div class="info">
+        <div class="tag">재활용</div>
+        <h3>캔·병류 (합본)</h3>
+        <div class="dl-links">
+          <a class="primary" href="can_bottle.pdf" download>PDF 다운로드</a>
+          <a href="can_bottle.svg" download>SVG</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="label-card">
+      <div class="preview">
+        <img src="paper.svg" alt="종이류 분리수거 라벨" />
+      </div>
+      <div class="info">
+        <div class="tag">재활용</div>
+        <h3>종이류</h3>
+        <div class="dl-links">
+          <a class="primary" href="paper.pdf" download>PDF 다운로드</a>
+          <a href="paper.svg" download>SVG</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="label-card">
+      <div class="preview">
+        <img src="plastic.svg" alt="플라스틱류 분리수거 라벨" />
+      </div>
+      <div class="info">
+        <div class="tag">재활용</div>
+        <h3>플라스틱류</h3>
+        <div class="dl-links">
+          <a class="primary" href="plastic.pdf" download>PDF 다운로드</a>
+          <a href="plastic.svg" download>SVG</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="label-card">
+      <div class="preview">
+        <img src="vinyl.svg" alt="비닐류 분리수거 라벨" />
+      </div>
+      <div class="info">
+        <div class="tag">재활용</div>
+        <h3>비닐류</h3>
+        <div class="dl-links">
+          <a class="primary" href="vinyl.pdf" download>PDF 다운로드</a>
+          <a href="vinyl.svg" download>SVG</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="label-card">
+      <div class="preview">
+        <img src="wastes.svg" alt="일반쓰레기 라벨" />
+      </div>
+      <div class="info">
+        <div class="tag">일반</div>
+        <h3>일반쓰레기</h3>
+        <div class="dl-links">
+          <a class="primary" href="wastes.pdf" download>PDF 다운로드</a>
+          <a href="wastes.svg" download>SVG</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="combined-card">
+    <div class="icon">📄</div>
+    <div class="text">
+      <h3>전체 종합 PDF</h3>
+      <p>모든 라벨이 한 파일에 담긴 PDF입니다. 한 번에 인쇄하거나 필요한 페이지만 선택해서 출력하세요.</p>
+      <div class="dl-links" style="display:flex;gap:8px;">
+        <a class="primary btn" href="recycle_all.pdf" download>📥 recycle_all.pdf 다운로드</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-to">
+    <h2>사용 방법</h2>
+    <ol>
+      <li>원하는 라벨의 <strong>PDF 파일을 다운로드</strong>합니다.</li>
+      <li>PDF를 열어 <strong>A4 용지에 실제 크기(100%)로 인쇄</strong>합니다.</li>
+      <li>인쇄한 라벨을 <strong>해당 분리수거 통에 붙이거나</strong> 코팅하여 사용합니다.</li>
+      <li><span>크기 조정이나 색상 변경이 필요하면 SVG 파일을 Inkscape 등의 프로그램으로 편집하세요.</span></li>
+    </ol>
+  </div>
+
+</main>
+<footer>
+  <p>Made by <a href="https://github.com/zirize">zirize</a> · <a href="https://zirize.github.io/">홈으로</a></p>
+</footer>
+</body>
+</html>

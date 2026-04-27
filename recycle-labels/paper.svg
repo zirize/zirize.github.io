@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" 
+     width="297mm" height="210mm" 
+     viewBox="0 0 297 210">
+  
+  <!-- 배경: 흰색 -->
+  <rect width="297" height="210" fill="white"/>
+  
+  <!-- 외곽 테두리 -->
+  <rect x="12" y="12" width="273" height="186" 
+        rx="6" ry="6"
+        fill="none" stroke="black" stroke-width="1.8"/>
+
+  <!-- 아이콘 -->
+  
+        <g transform="translate(23.466,75.516)">
+          <!-- 종이 뭉치 (뒤) -->
+          <rect x="9.434879999999998" y="8.255519999999999" width="31.842719999999996" height="40.09824" rx="1.1793599999999997"
+                fill="white" stroke="black" stroke-width="2.3587199999999995"/>
+          <!-- 종이 뭉치 (앞) -->
+          <rect x="16.511039999999998" y="12.972959999999997" width="31.842719999999996" height="40.09824" rx="1.1793599999999997"
+                fill="white" stroke="black" stroke-width="2.3587199999999995"/>
+          <!-- 텍스트 줄 표현 -->
+          <line x1="21.228479999999994" y1="21.228479999999994" x2="43.63631999999999" y2="21.228479999999994" stroke="black" stroke-width="1.1793599999999997"/>
+          <line x1="21.228479999999994" y1="28.304639999999996" x2="43.63631999999999" y2="28.304639999999996" stroke="black" stroke-width="1.1793599999999997"/>
+          <line x1="21.228479999999994" y1="35.380799999999994" x2="43.63631999999999" y2="35.380799999999994" stroke="black" stroke-width="1.1793599999999997"/>
+          <line x1="21.228479999999994" y1="42.45695999999999" x2="35.380799999999994" y2="42.45695999999999" stroke="black" stroke-width="1.1793599999999997"/>
+        </g>
+
+  <!-- 세로 구분선 -->
+  <line x1="93.89999999999999" y1="37" x2="93.89999999999999" y2="173" 
+        stroke="black" stroke-width="1.0"/>
+
+  <!-- 한글 텍스트 -->
+  <text x="189.45" y="90.3" 
+        font-family="'Noto Sans KR', 'Malgun Gothic', 'NanumGothic', sans-serif" 
+        font-size="48" font-weight="900" 
+        fill="black" text-anchor="middle" dominant-baseline="middle">
+    종이류
+  </text>
+
+  <!-- 가로 구분선 (한글과 영문 사이) -->
+  <line x1="118.89999999999999" y1="115.50000000000001" x2="260.0" y2="115.50000000000001" 
+        stroke="black" stroke-width="0.8"/>
+
+  <!-- 영문 텍스트 -->
+  <text x="189.45" y="142.8" 
+        font-family="'Noto Sans', 'Arial', 'Helvetica', sans-serif" 
+        font-size="20" font-weight="600" letter-spacing="3"
+        fill="black" text-anchor="middle" dominant-baseline="middle">
+    PAPER
+  </text>
+
+</svg>
