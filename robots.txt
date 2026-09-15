@@ -6,3 +6,4 @@ Sitemap: https://zirize.github.io/linm-install-guide/sitemap.xml
 Sitemap: https://zirize.github.io/scream-audio-monitoring/sitemap.xml
 Sitemap: https://zirize.github.io/piper-renpy-selfvoicing/sitemap.xml
 Sitemap: https://zirize.github.io/recycle-labels/sitemap.xml
+Sitemap: https://zirize.github.io/qemu-wayland-scaler/sitemap.xml
