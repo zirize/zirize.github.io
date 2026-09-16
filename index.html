@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>zirize — Open Source Projects</title>
-  <meta name="description" content="Open source projects by zirize: QEMU display and input patches, Linux tools, audio monitoring, accessibility utilities, and Korean recycling label printouts." />
+  <meta name="description" content="Open source projects by zirize: QEMU display, input and parallel-port patches, Linux tools, audio monitoring, accessibility utilities, and Korean recycling label printouts." />
   <meta name="author" content="zirize" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://zirize.github.io/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://zirize.github.io/" />
   <meta property="og:title" content="zirize — Open Source Projects" />
-  <meta property="og:description" content="Open source projects by zirize: QEMU display and input patches, Linux tools, audio monitoring, and accessibility utilities." />
+  <meta property="og:description" content="Open source projects by zirize: QEMU display, input and parallel-port patches, Linux tools, audio monitoring, and accessibility utilities." />
   <meta name="twitter:card" content="summary" />
   <script type="application/ld+json">
   {
@@ -163,6 +163,16 @@
       <div class="links">
         <a class="primary" href="https://zirize.github.io/qemu-wayland-scaler/">Read the write-up</a>
         <a href="https://github.com/zirize/qemu-wayland-scaler">GitHub</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="tag">QEMU · Parallel port</div>
+      <h3>QEMU freezes when printing to a parallel port</h3>
+      <p>A guest writing to LPT1 can stop the entire VM — the monitor goes silent and SIGTERM is ignored — because one chardev write spins on the vCPU thread holding the BQL. Root cause, reproducer, and a non-blocking fix.</p>
+      <div class="links">
+        <a class="primary" href="https://zirize.github.io/qemu-parallel-port-freeze/">Read the write-up</a>
+        <a href="https://github.com/zirize/qemu-parallel-port-freeze">GitHub</a>
       </div>
     </div>
 
