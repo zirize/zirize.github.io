@@ -12,6 +12,7 @@ Source for **<https://zirize.github.io/>** — project pages and write-ups.
 | [Scream sender for PipeWire — stream Linux audio over the network as raw PCM](https://zirize.github.io/pipewire-scream/) | [pipewire-scream](https://github.com/zirize/pipewire-scream) |
 | [screamplay — play audio files over the network with the Scream protocol](https://zirize.github.io/screamplay/) | [screamplay](https://github.com/zirize/screamplay) |
 | [Screamdroid — play your PC's audio on an Android phone, and let a call silence it](https://zirize.github.io/screamdroid/) | [screamdroid](https://github.com/zirize/screamdroid) |
+| [Hear your phone on your PC: a NanoKVM as a USB speaker that forwards audio over Scream](https://zirize.github.io/nanokvm-scream-bridge/) | [nanokvm-scream-bridge](https://github.com/zirize/nanokvm-scream-bridge) |
 | [Integrated Audio Monitoring System — Scream Ecosystem](https://zirize.github.io/scream-audio-monitoring/) | [scream-audio-monitoring](https://github.com/zirize/scream-audio-monitoring) |
 | [Piper TTS for Ren'Py Self-Voicing on Linux](https://zirize.github.io/piper-renpy-selfvoicing/) | [piper-renpy-selfvoicing](https://github.com/zirize/piper-renpy-selfvoicing) |
 | [LinM 한글 설치 가이드](https://zirize.github.io/linm-install-guide/) | [linm-install-guide](https://github.com/zirize/linm-install-guide) |
