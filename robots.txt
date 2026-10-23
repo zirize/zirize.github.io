@@ -15,3 +15,5 @@ Sitemap: https://zirize.github.io/recycle-labels/sitemap.xml
 Sitemap: https://zirize.github.io/alpine-vde-router/sitemap.xml
 Sitemap: https://zirize.github.io/nanokvm-scream-bridge/sitemap.xml
 Sitemap: https://zirize.github.io/tigervnc-client-scaling/sitemap.xml
+Sitemap: https://zirize.github.io/rotk4-patch/sitemap.xml
+Sitemap: https://zirize.github.io/rotk5-patch/sitemap.xml
