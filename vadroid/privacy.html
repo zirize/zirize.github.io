@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy — vadroid</title>
+<meta name="description" content="Privacy policy for vadroid, a personal voice assistant. The app has no server of its own, no analytics and no advertising. Your recognized speech goes only to a PC you own and pair with it." />
+<meta name="author" content="zirize" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://zirize.github.io/vadroid/privacy.html" />
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--border:#2d3148;--accent:#7c6af7;--accent2:#56c8a0;--text:#e2e4ef;--muted:#8b90b0;--radius:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+header{background:linear-gradient(135deg,#1a1d27 0%,#12141e 100%);border-bottom:1px solid var(--border);padding:48px 20px 36px;text-align:center}
+header h1{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px}
+header p{font-size:.95rem;color:var(--muted)}
+main{max-width:760px;margin:0 auto;padding:44px 20px;flex:1}
+h2{font-size:1.25rem;margin:38px 0 12px}
+h2:first-child{margin-top:0}
+p{margin:0 0 14px}
+ul{margin:0 0 14px 22px}
+li{margin:6px 0}
+.lede{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:var(--radius);padding:18px 20px;margin-bottom:8px}
+.lede p:last-child{margin-bottom:0}
+code{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:.88em}
+footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem}
+.meta{color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+<header>
+  <h1>Privacy Policy</h1>
+  <p>vadroid · <span class="meta">Last updated 2 November 2026</span></p>
+</header>
+<main>
+
+<div class="lede">
+  <p><strong>vadroid sends nothing to the developer.</strong> It has no server of its own, no account
+  with us, no analytics, no advertising, no crash reporting and no third-party tracking SDKs. It talks
+  to exactly one place: a PC that <em>you</em> own and pair the app with, reached over your home
+  network or your own VPN.</p>
+</div>
+
+<h2>What the app is</h2>
+<p>vadroid is a personal voice assistant. You speak to your phone; the phone turns your speech into
+text; that text goes to an assistant program (the "relay") running on your own PC; the relay's
+reply comes back as text, and the phone reads it aloud.</p>
+
+<h2>How your voice and text flow</h2>
+<ul>
+  <li><strong>Microphone.</strong> The app uses the microphone (<code>RECORD_AUDIO</code>) only while
+      you are talking to it. It does not record audio to a file and does not send audio anywhere itself.</li>
+  <li><strong>Speech recognition.</strong> Speech is converted to text by your phone's speech recognition
+      service (Android's <code>SpeechRecognizer</code>; on most phones this is provided by Google).
+      That service is part of your device, not of this app, and handles audio under its provider's own
+      privacy policy.</li>
+  <li><strong>Text to your PC.</strong> Only the recognized text is sent, to the relay on your PC.
+      The app accepts only addresses on a home network or a VPN range, and only the PC you paired it with.</li>
+  <li><strong>What your PC does with it.</strong> The relay on your PC sends that text to AI services
+      you have set up under your own accounts — currently the Google Gemini API and Anthropic Claude —
+      to produce the reply. Those services process the text under their own terms and privacy policies.
+      The developer of this app receives none of it.</li>
+  <li><strong>Replies and notifications.</strong> Text replies and notification messages come back from
+      your PC to the phone, are shown as notifications and read aloud by your phone's text-to-speech engine.</li>
+</ul>
+
+<h2>Background connection</h2>
+<p>When you turn it on, the app keeps its connection to your PC open with a foreground service, so that
+replies and messages from your PC can arrive while the screen is off. A persistent notification is shown
+the whole time, and you can stop it from that notification or from the app.</p>
+
+<h2>What is stored, and where</h2>
+<p>The app keeps the connection details for your PC (its address and the login made for this app when
+you paired it) in Android's private per-app storage on your device. Nothing of this leaves your device
+by any action of the app, except that it is used to log in to your own PC.</p>
+<p>If you have Android device backup turned on, this private storage may be included in <em>your own</em>
+Google account backup. That is a function of Android and your Google account; the developer has no
+access to it.</p>
+
+<h2>Deleting your data</h2>
+<p>Uninstalling the app removes everything it stored on the phone. Anything kept on your PC, or by the
+AI services your PC uses, is under your control through that PC and those accounts.</p>
+
+<h2>Children</h2>
+<p>The app is not directed at children.</p>
+
+<h2>Changes to this policy</h2>
+<p>If this policy changes, the updated version will appear at this address with a new date at the top.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy or the app: <a href="mailto:zirize@gmail.com">zirize@gmail.com</a>.</p>
+
+</main>
+<footer>
+  <p>vadroid · <a href="https://zirize.github.io/">zirize</a></p>
+</footer>
+</body>
+</html>
