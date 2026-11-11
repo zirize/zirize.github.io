@@ -18,3 +18,4 @@ Sitemap: https://zirize.github.io/tigervnc-client-scaling/sitemap.xml
 Sitemap: https://zirize.github.io/rotk4-patch/sitemap.xml
 Sitemap: https://zirize.github.io/rotk5-patch/sitemap.xml
 Sitemap: https://zirize.github.io/exult-tts/sitemap.xml
+Sitemap: https://zirize.github.io/exult-inventory/sitemap.xml
