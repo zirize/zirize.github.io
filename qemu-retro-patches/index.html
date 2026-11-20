@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Building QEMU for retro guests: integer scaling, a non-blocking LPT and CUE/BIN audio CDs</title>
+<meta name="description" content="How to apply three QEMU patch series together for DOS, Windows 9x and Windows XP guests on Linux: SDL integer scaling and Wayland mouse fixes, a parallel port that no longer freezes the VM, and CUE/BIN images with CD audio. Build steps, one combined command line, and guest notes." />
+<meta name="author" content="zirize" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://zirize.github.io/qemu-retro-patches/" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zirize.github.io/qemu-retro-patches/" />
+<meta property="og:title" content="Building QEMU for retro guests: integer scaling, a non-blocking LPT and CUE/BIN audio CDs" />
+<meta property="og:description" content="How to apply three QEMU patch series together for DOS, Windows 9x and Windows XP guests on Linux: SDL integer scaling and Wayland mouse fixes, a parallel port that no longer freezes the VM, and CUE/BIN images with CD audio. Build steps, one combined command line, and guest notes." />
+<meta name="twitter:card" content="summary" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Building QEMU for retro guests: integer scaling, a non-blocking LPT and CUE/BIN audio CDs",
+  "description": "How to apply three QEMU patch series together for DOS, Windows 9x and Windows XP guests on Linux: SDL integer scaling and Wayland mouse fixes, a parallel port that no longer freezes the VM, and CUE/BIN images with CD audio. Build steps, one combined command line, and guest notes.",
+  "url": "https://zirize.github.io/qemu-retro-patches/",
+  "author": { "@type": "Person", "name": "zirize", "url": "https://github.com/zirize" },
+  "about": ["QEMU", "retro gaming", "integer scaling", "parallel port", "CUE/BIN", "CD audio", "Windows 98", "Windows XP", "DOS"]
+}
+</script>
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--border:#2d3148;--accent:#7c6af7;--accent2:#56c8a0;--text:#e2e4ef;--muted:#8b90b0;--radius:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+header{background:linear-gradient(135deg,#1a1d27 0%,#12141e 100%);border-bottom:1px solid var(--border);padding:56px 20px 44px;text-align:center}
+header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
+header p{font-size:1.05rem;color:var(--muted);max-width:620px;margin:0 auto 22px}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btns a{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:.9rem;font-weight:500}
+.btns a:hover{text-decoration:none;border-color:var(--accent)}
+.btns a.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+main{max-width:820px;margin:0 auto;padding:48px 20px;flex:1}
+h2{font-size:1.35rem;margin:44px 0 14px;color:var(--text)}
+h2:first-child{margin-top:0}
+h3{font-size:1.05rem;margin:28px 0 10px;color:var(--accent2)}
+p{margin-bottom:14px;color:var(--text)}
+ul,ol{margin:0 0 16px 22px}
+li{margin-bottom:8px}
+code{font-family:ui-monospace,'Cascadia Code',Menlo,monospace;font-size:.88em;background:#12141e;border:1px solid var(--border);border-radius:5px;padding:1px 6px}
+pre{background:#12141e;border:1px solid var(--border);border-radius:var(--radius);padding:16px;overflow-x:auto;margin-bottom:16px}
+pre code{background:none;border:none;padding:0;font-size:.85rem;line-height:1.6}
+table{width:100%;border-collapse:collapse;margin-bottom:18px;font-size:.92rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.5px}
+.symptoms{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:var(--radius);padding:20px 24px 8px;margin-bottom:8px}
+.note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;font-size:.93rem;color:var(--muted)}
+.note strong{color:var(--text)}
+footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <h1>Building QEMU for retro guests: integer scaling, a non-blocking LPT and CUE/BIN audio CDs</h1>
+  <p>Three independent QEMU patch series for running DOS, Windows 9x and Windows XP guests on a modern Linux desktop, and how to build them into one binary.</p>
+  <div class="btns">
+    <a class="primary" href="#build">Build steps</a>
+    <a href="https://github.com/zirize/qemu-wayland-scaler">qemu-wayland-scaler</a>
+    <a href="https://github.com/zirize/qemu-parallel-port-freeze">qemu-parallel-port-freeze</a>
+    <a href="https://github.com/zirize/qemu-cue-bin">qemu-cue-bin</a>
+  </div>
+</header>
+<main>
+
+<div class="symptoms">
+<p>Running old games and applications under QEMU on a Wayland desktop tends to hit the same three walls:</p>
+<ul>
+<li>The 640×480 guest is <strong>blurry when enlarged</strong>, the mouse drifts or crawls on a HiDPI screen, and the Windows XP mouse feels slow.</li>
+<li><strong>Printing to <code>LPT1</code> freezes the whole VM</strong> — display, monitor and <code>SIGTERM</code> — when the print server behind a socket stops reading.</li>
+<li>Game CDs ripped as <code>.cue</code>/<code>.bin</code> <strong>play no CD music</strong>, and Windows CD Player sees no audio disc.</li>
+</ul>
+<p>Each has its own patch series and write-up. This page shows how to combine them.</p>
+</div>
+
+<h2>1. The three series</h2>
+
+<table>
+<tr><th>Series</th><th>Fixes</th><th>Touches</th><th>Patches</th></tr>
+<tr><td><a href="https://zirize.github.io/qemu-wayland-scaler/">qemu-wayland-scaler</a></td><td>Blurry Wayland/HiDPI scaling, relative-pointer drift in SDL and GTK, slow PS/2 mouse in Windows XP; adds pixel-exact <code>-display sdl,scaler=integer|integerplus|nearest|linear</code></td><td><code>ui/gtk.c</code>, <code>ui/sdl2*.c</code>, <code>qapi/ui.json</code>, <code>qemu-options.hx</code>, <code>hw/input/ps2.c</code></td><td>6</td></tr>
+<tr><td><a href="https://zirize.github.io/qemu-parallel-port-freeze/">qemu-parallel-port-freeze</a></td><td>Whole-VM freeze when a <code>socket</code> chardev behind <code>LPT1</code> stops draining; raises the printer BUSY line instead of blocking the vCPU thread</td><td><code>hw/char/parallel.c</code>, <code>include/hw/char/parallel.h</code></td><td>1</td></tr>
+<tr><td><a href="https://zirize.github.io/qemu-cue-bin/">qemu-cue-bin</a></td><td>Native <code>.cue</code>/<code>.bin</code> images and CD audio on <code>ide-cd</code>: digital extraction (<code>READ CD</code>) and analog <code>PLAY AUDIO</code> through an <code>audiodev</code></td><td><code>hw/ide/</code> (<code>atapi.c</code>, new <code>cdrom-cue.{c,h}</code>, <code>core.c</code>, <code>ide-dev.c</code>)</td><td>3</td></tr>
+</table>
+
+<p>The series touch disjoint parts of QEMU. Without their options — no <code>scaler=</code>, a <code>file</code> chardev, an <code>.iso</code> image — QEMU behaves as upstream.</p>
+
+<h2 id="build">2. Applying all three and building</h2>
+
+<pre><code>mkdir qemu-retro &amp;&amp; cd qemu-retro
+git clone https://gitlab.com/qemu-project/qemu.git
+git clone https://github.com/zirize/qemu-wayland-scaler.git
+git clone https://github.com/zirize/qemu-parallel-port-freeze.git
+git clone https://github.com/zirize/qemu-cue-bin.git
+
+cd qemu
+git checkout -b retro 5f664cd37a      # QEMU 11.1.50, the base all ten patches were checked on
+
+git am ../qemu-wayland-scaler/patches/qemu-master/000[1-6]-*.patch
+git am ../qemu-parallel-port-freeze/patches/0001-parallel-nonblocking-tx.patch
+git am ../qemu-cue-bin/patches/000[1-3]-*.patch
+
+./configure --target-list=i386-softmmu,x86_64-softmmu --enable-sdl --enable-pipewire
+ninja -C build</code></pre>
+
+<p>SDL is needed for <code>scaler=</code>; the audio backend (PipeWire here, or PulseAudio/ALSA) carries CD audio. The <code>qemu-wayland-scaler</code> repository also has the scaler series rebased onto the <code>screamer</code> fork for Mac OS 9 guests.</p>
+
+<h2>3. One command line using all three</h2>
+
+<pre><code>./build/qemu-system-i386 \
+  -enable-kvm -M pc -m 512 \
+  -display sdl,scaler=integerplus \
+  -audiodev pipewire,id=pw0 \
+  -device AC97,audiodev=pw0 \
+  -chardev socket,id=lpt0,host=127.0.0.1,port=9100,server=off \
+  -parallel chardev:lpt0 \
+  -drive file=disk.qcow2,if=ide,index=0,media=disk \
+  -drive file=/path/to/game.cue,if=ide,index=2,media=cdrom</code></pre>
+
+<h3>Display and mouse</h3>
+<ul>
+<li>Use <code>-display sdl</code> rather than <code>gtk</code> on Wayland; SDL handles pointer constraints and relative motion natively.</li>
+<li><code>scaler=integer</code> keeps an exact integer multiple with borders; <code>scaler=integerplus</code> scales up by an integer, then stretches to fill the window.</li>
+<li><strong>Do not add <code>gl=on</code></strong>: the GL path ignores <code>scaler=</code> and always filters bilinearly.</li>
+</ul>
+
+<h3>Parallel port</h3>
+<ul>
+<li>When the socket peer stops reading, the guest sees a busy printer and waits; QEMU, its display and its monitor stay responsive.</li>
+<li>A <code>file</code> chardev never fills up and was never affected.</li>
+</ul>
+
+<h3>CD-ROM</h3>
+<ul>
+<li>Point the CD-ROM at the <code>.cue</code>; the <code>.bin</code> files are found next to it.</li>
+<li>With exactly one <code>-audiodev</code> the CD-ROM uses it automatically; with several, add <code>-global ide-cd.audiodev=pw0</code>.</li>
+<li>To swap discs in Windows 98 SE from the monitor, send <code>eject</code>, wait about 1.5 seconds, then <code>change</code>, so CD Player notices the new disc.</li>
+</ul>
+
+<h2>4. Guest notes</h2>
+
+<h3>CD audio: digital or analog</h3>
+<table>
+<tr><th>Guest OS / audio driver</th><th>Digital (DAE)</th><th>Analog</th></tr>
+<tr><td>DOS (MSCDEX)</td><td>not available</td><td><strong>works</strong></td></tr>
+<tr><td>Windows 95</td><td>not available</td><td><strong>works</strong></td></tr>
+<tr><td>Windows 98 SE + Sound Blaster (VxD)</td><td>not available</td><td><strong>works</strong></td></tr>
+<tr><td>Windows 98 SE + WDM driver (AC97)</td><td>works (opt-in)</td><td>works (default)</td></tr>
+<tr><td>Windows XP</td><td><strong>works</strong> (recommended)</td><td>works</td></tr>
+</table>
+<p>Why, and what was actually tested: <a href="https://zirize.github.io/qemu-cue-bin/">qemu-cue-bin</a>.</p>
+
+<h3>Windows XP refuses “Enable digital CD audio”</h3>
+<p>An XP VM that first booted on an unpatched QEMU has cached “no CD-DA” for the drive under <code>HKLM\SYSTEM\CurrentControlSet\Control\Class\{4D36E965-E325-11CE-BFC1-08002BE10318}\0000\DigitalAudio</code> (<code>CDDASupported = 0</code>, <code>CDDAAccurate = 0</code>) and never re-checks. In Device Manager, <strong>uninstall <em>QEMU DVD-ROM</em></strong> and <strong>scan for hardware changes</strong> (or reboot), then tick the checkbox again. Deleting the <code>DigitalAudio</code> key and rebooting works too.</p>
+
+<h2>Verified</h2>
+<p>On 2026-11-21 all ten patches were applied in the order above onto QEMU <code>5f664cd37a</code> with no conflicts, and <code>qemu-system-i386</code> was built with SDL and PipeWire. The combined binary accepts the <code>scaler=</code> option and passes the <code>qemu-cue-bin</code> Linux test on <code>pc</code> and <code>q35</code>. Guest-level testing of each feature is described on its own page.</p>
+
+<h2>Not submitted upstream</h2>
+<p>QEMU <a href="https://www.qemu.org/docs/master/devel/code-provenance.html">declines contributions that include or derive from AI-generated content</a>, and all three series were written with Claude. None of them are in QEMU. They are offered as-is under QEMU's licence (GPL-2.0-or-later).</p>
+
+</main>
+<footer>
+  <p>Made by <a href="https://github.com/zirize">zirize</a> &middot; <a href="https://zirize.github.io/">More projects</a></p>
+</footer>
+</body>
+</html>

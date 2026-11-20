@@ -19,3 +19,5 @@ Sitemap: https://zirize.github.io/rotk4-patch/sitemap.xml
 Sitemap: https://zirize.github.io/rotk5-patch/sitemap.xml
 Sitemap: https://zirize.github.io/exult-tts/sitemap.xml
 Sitemap: https://zirize.github.io/exult-inventory/sitemap.xml
+Sitemap: https://zirize.github.io/qemu-cue-bin/sitemap.xml
+Sitemap: https://zirize.github.io/qemu-retro-patches/sitemap.xml

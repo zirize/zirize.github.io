@@ -7,6 +7,8 @@ Source for **<https://zirize.github.io/>** — project pages and write-ups.
 | [zirize — Open Source Projects](https://zirize.github.io/) | Index of everything below |
 | [QEMU on Wayland: mouse dead zones, slow Windows mouse, blurry scaling, and integer scaling](https://zirize.github.io/qemu-wayland-scaler/) | [qemu-wayland-scaler](https://github.com/zirize/qemu-wayland-scaler) |
 | [QEMU freezes when printing to a parallel port: the blocking chardev write](https://zirize.github.io/qemu-parallel-port-freeze/) | [qemu-parallel-port-freeze](https://github.com/zirize/qemu-parallel-port-freeze) |
+| [CUE/BIN audio CDs in QEMU: CD-DA for ide-cd, digital and analog](https://zirize.github.io/qemu-cue-bin/) | [qemu-cue-bin](https://github.com/zirize/qemu-cue-bin) |
+| [Building QEMU for retro guests: integer scaling, a non-blocking LPT and CUE/BIN audio CDs](https://zirize.github.io/qemu-retro-patches/) | This repository, under `qemu-retro-patches/` |
 | [An Android VNC client built for playing games, not for desk work](https://zirize.github.io/vncviewer-for-games/) | [vncviewer-for-games](https://github.com/zirize/vncviewer-for-games) |
 | [TigerVNC client-side scaling for vncviewer](https://zirize.github.io/tigervnc-client-scaling/) | [tigervnc-client-scaling](https://github.com/zirize/tigervnc-client-scaling) |
 | [Networking for Windows 98, Mac OS 9 and DOS: SMB1, AFP, NAT and a PDF printer on Alpine Linux](https://zirize.github.io/alpine-vde-router/) | [alpine-vde-router](https://github.com/zirize/alpine-vde-router) |
@@ -23,6 +25,6 @@ Source for **<https://zirize.github.io/>** — project pages and write-ups.
 | [Exult Inventory: auto-equip the best gear and tidy party bags in Ultima VII](https://zirize.github.io/exult-inventory/) | [exult-inventory](https://github.com/zirize/exult-inventory) |
 | [분리수거 안내 라벨 — A4 출력용](https://zirize.github.io/recycle-labels/) | This repository, under `recycle-labels/` |
 
-This repository holds the hand-written `index.html`, `recycle-labels/`, and the site-wide
+This repository holds the hand-written `index.html`, `recycle-labels/`, `qemu-retro-patches/`, and the site-wide
 `sitemap.xml` / `robots.txt`. Each project page lives in its own repository and is served
 from that repository's `docs/`.
