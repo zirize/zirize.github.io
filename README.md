@@ -18,6 +18,7 @@ Source for **<https://zirize.github.io/>** — project pages and write-ups.
 | [Hear your phone on your PC: a NanoKVM as a USB speaker that forwards audio over Scream](https://zirize.github.io/nanokvm-scream-bridge/) | [nanokvm-scream-bridge](https://github.com/zirize/nanokvm-scream-bridge) |
 | [Integrated Audio Monitoring System — Scream Ecosystem](https://zirize.github.io/scream-audio-monitoring/) | [scream-audio-monitoring](https://github.com/zirize/scream-audio-monitoring) |
 | [Piper TTS for Ren'Py Self-Voicing on Linux](https://zirize.github.io/piper-renpy-selfvoicing/) | [piper-renpy-selfvoicing](https://github.com/zirize/piper-renpy-selfvoicing) |
+| [Linux bridge (br0) traffic in the KDE Plasma 6 network monitor](https://zirize.github.io/ksystemstats-bridge/) | [ksystemstats-bridge](https://github.com/zirize/ksystemstats-bridge) |
 | [LinM 한글 설치 가이드](https://zirize.github.io/linm-install-guide/) | [linm-install-guide](https://github.com/zirize/linm-install-guide) |
 | [삼국지 IV with 파워업키트 한글판 — 윈도우 10/11·Wine 실행 패치](https://zirize.github.io/rotk4-patch/) | [rotk4-patch](https://github.com/zirize/rotk4-patch) |
 | [삼국지 V with 파워업키트 한글판 — 윈도우 10/11·Wine 실행 패치](https://zirize.github.io/rotk5-patch/) | [rotk5-patch](https://github.com/zirize/rotk5-patch) |

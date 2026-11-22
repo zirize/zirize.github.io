@@ -21,3 +21,4 @@ Sitemap: https://zirize.github.io/exult-tts/sitemap.xml
 Sitemap: https://zirize.github.io/exult-inventory/sitemap.xml
 Sitemap: https://zirize.github.io/qemu-cue-bin/sitemap.xml
 Sitemap: https://zirize.github.io/qemu-retro-patches/sitemap.xml
+Sitemap: https://zirize.github.io/ksystemstats-bridge/sitemap.xml
