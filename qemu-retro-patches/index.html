@@ -83,7 +83,7 @@ footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border);co
 
 <table>
 <tr><th>Series</th><th>Fixes</th><th>Touches</th><th>Patches</th></tr>
-<tr><td><a href="https://zirize.github.io/qemu-wayland-scaler/">qemu-wayland-scaler</a></td><td>Blurry Wayland/HiDPI scaling, relative-pointer drift in SDL and GTK, slow PS/2 mouse in Windows XP; adds pixel-exact <code>-display sdl,scaler=integer|integerplus|nearest|linear</code></td><td><code>ui/gtk.c</code>, <code>ui/sdl2*.c</code>, <code>qapi/ui.json</code>, <code>qemu-options.hx</code>, <code>hw/input/ps2.c</code></td><td>6</td></tr>
+<tr><td><a href="https://zirize.github.io/qemu-wayland-scaler/">qemu-wayland-scaler</a></td><td>Blurry Wayland/HiDPI scaling, relative-pointer drift in SDL and GTK, slow PS/2 mouse in Windows XP; adds pixel-exact <code>-display sdl,scaler=integer|integerplus|nearest|linear</code> (cycled at run time with Ctrl+Alt+S) and <code>zoom-to-fit=on</code> for SDL</td><td><code>ui/gtk.c</code>, <code>ui/sdl2*.c</code>, <code>qapi/ui.json</code>, <code>qemu-options.hx</code>, <code>hw/input/ps2.c</code></td><td>9</td></tr>
 <tr><td><a href="https://zirize.github.io/qemu-parallel-port-freeze/">qemu-parallel-port-freeze</a></td><td>Whole-VM freeze when a <code>socket</code> chardev behind <code>LPT1</code> stops draining; raises the printer BUSY line instead of blocking the vCPU thread</td><td><code>hw/char/parallel.c</code>, <code>include/hw/char/parallel.h</code></td><td>1</td></tr>
 <tr><td><a href="https://zirize.github.io/qemu-cue-bin/">qemu-cue-bin</a></td><td>Native <code>.cue</code>/<code>.bin</code> images and CD audio on <code>ide-cd</code>: digital extraction (<code>READ CD</code>) and analog <code>PLAY AUDIO</code> through an <code>audiodev</code></td><td><code>hw/ide/</code> (<code>atapi.c</code>, new <code>cdrom-cue.{c,h}</code>, <code>core.c</code>, <code>ide-dev.c</code>)</td><td>3</td></tr>
 </table>
@@ -99,9 +99,9 @@ git clone https://github.com/zirize/qemu-parallel-port-freeze.git
 git clone https://github.com/zirize/qemu-cue-bin.git
 
 cd qemu
-git checkout -b retro 5f664cd37a      # QEMU 11.1.50, the base all ten patches were checked on
+git checkout -b retro 5f664cd37a      # QEMU 11.1.50, the base all thirteen patches were checked on
 
-git am ../qemu-wayland-scaler/patches/qemu-master/000[1-6]-*.patch
+git am ../qemu-wayland-scaler/patches/qemu-master/000[1-9]-*.patch
 git am ../qemu-parallel-port-freeze/patches/0001-parallel-nonblocking-tx.patch
 git am ../qemu-cue-bin/patches/000[1-3]-*.patch
 
@@ -126,6 +126,7 @@ ninja -C build</code></pre>
 <ul>
 <li>Use <code>-display sdl</code> rather than <code>gtk</code> on Wayland; SDL handles pointer constraints and relative motion natively.</li>
 <li><code>scaler=integer</code> keeps an exact integer multiple with borders; <code>scaler=integerplus</code> scales up by an integer, then stretches to fill the window.</li>
+<li>Ctrl+Alt+S steps through the scaler modes while the guest runs. Add <code>zoom-to-fit=on</code> to keep the window size when the guest changes resolution instead of snapping back to 1:1.</li>
 <li><strong>Do not add <code>gl=on</code></strong>: the GL path ignores <code>scaler=</code> and always filters bilinearly.</li>
 </ul>
 
@@ -159,7 +160,7 @@ ninja -C build</code></pre>
 <p>An XP VM that first booted on an unpatched QEMU has cached “no CD-DA” for the drive under <code>HKLM\SYSTEM\CurrentControlSet\Control\Class\{4D36E965-E325-11CE-BFC1-08002BE10318}\0000\DigitalAudio</code> (<code>CDDASupported = 0</code>, <code>CDDAAccurate = 0</code>) and never re-checks. In Device Manager, <strong>uninstall <em>QEMU DVD-ROM</em></strong> and <strong>scan for hardware changes</strong> (or reboot), then tick the checkbox again. Deleting the <code>DigitalAudio</code> key and rebooting works too.</p>
 
 <h2>Verified</h2>
-<p>On 2026-11-21 all ten patches were applied in the order above onto QEMU <code>5f664cd37a</code> with no conflicts, and <code>qemu-system-i386</code> was built with SDL and PipeWire. The combined binary accepts the <code>scaler=</code> option and passes the <code>qemu-cue-bin</code> Linux test on <code>pc</code> and <code>q35</code>. Guest-level testing of each feature is described on its own page.</p>
+<p>On 2026-11-24 all thirteen patches (scaler 1–9, parallel port 1, CUE/BIN 1–3) were applied in the order above onto QEMU <code>5f664cd37a</code> with no conflicts, and <code>qemu-system-i386</code> was built with the configure line above. Its <code>-help</code> lists <code>scaler=</code> and <code>zoom-to-fit=</code> on the SDL display line only, and the binary passes the <code>qemu-cue-bin</code> Linux test on <code>pc</code> and <code>q35</code>. Guest-level testing of each feature is described on its own page.</p>
 
 <h2>Not submitted upstream</h2>
 <p>QEMU <a href="https://www.qemu.org/docs/master/devel/code-provenance.html">declines contributions that include or derive from AI-generated content</a>, and all three series were written with Claude. None of them are in QEMU. They are offered as-is under QEMU's licence (GPL-2.0-or-later).</p>
